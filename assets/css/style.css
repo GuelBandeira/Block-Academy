@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;600&family=Poppins:wght@200;300;400;700&display=swap');
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar-box .uk-nav li.uk-nav-header {
+    font-weight: bold !important;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar-box .uk-nav li a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+}
+
+.uk-text-lead {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 17px;
+}
+
+body.dark-theme .sidebar-box .uk-nav li.uk-active a {
+    color: #b81c2e;
+}
+
+.swiper-pagination-bullet {
+    -webkit-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    border-radius: 5px;
+    background: #ffffffcc;
+    transition: all 0.25s linear;
+}
+
+.swiper-pagination-bullet-active {
+    width: 40px;
+    border-radius: 5px;
+    background: rgb(195, 34, 158);
+    background: linear-gradient(90deg, rgba(195, 34, 158, 1) 0%, rgba(253, 46, 45, 1) 100%);
+}
+
+.sidebar-box .uk-nav li a::before {
+    -webkit-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    border-radius: 0px 5px 5px 0px;
+    background: linear-gradient(90deg, rgba(195, 34, 158, 1) 0%, rgba(253, 46, 45, 1) 90%);
+    content: '';
+    opacity: 0;
+    transition: all 0.25s linear;
+}
+
+body.dark-theme .sidebar-box .uk-nav li.uk-active a [class*='ico_'] {
+    color: #dd2038;
+}
+
+.sidebar.is-show+.page-main {
+    -webkit-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    left: 250px;
+    width: calc(100% - 250px);
+    padding: 25px 45px;
+    transition: all 0.25s linear;
+}
+
+.game-card__media {
+    display: block;
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.game-card.--horizontal .game-card__media {
+    width: 50%;
+    max-width: 50%;
+    max-height: 295px;
+}
+
+@media (min-width: 1200px) {
+    *+.uk-grid-margin,
+    .uk-grid+.uk-grid,
+    .uk-grid>.uk-grid-margin {
+        margin-top: 40px;
+    }
+}
