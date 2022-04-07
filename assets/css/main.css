@@ -423,7 +423,8 @@ a:hover {
     margin-top: -50px;
     margin-left: -50px;
     border: 3px solid transparent;
-    border-top-color: #4aa138;
+    border-top-color: #e40835; 
+
     border-radius: 50%;
     z-index: 1001;
     -webkit-animation: spin 2.5s infinite linear;
@@ -443,7 +444,7 @@ a:hover {
     bottom: 5px;
     left: 5px;
     border: 3px solid transparent;
-    border-top-color: #F46119;
+    border-top-color: #D3029B;
     -webkit-animation: spin 2s infinite linear;
     animation: spin 2s infinite linear;
 }
@@ -1011,14 +1012,11 @@ a:hover {
 }
 
 .uk-input {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    backdrop-filter: blur(5px);
     height: 60px;
+    color:white;
     padding: 0 20px;
-    border: 1px solid #F5F5F5;
     border-radius: 15px;
-    background: #F2F2F2;
-    color: #000;
     font-size: 16px;
     font-style: normal;
     font-weight: normal;
@@ -1026,35 +1024,35 @@ a:hover {
 }
 
 .uk-input::-webkit-input-placeholder {
-    color: #6E6E6E;
+    color:white;
     font-size: 16px;
     font-style: normal;
     font-weight: normal;
 }
 
 .uk-input::-moz-placeholder {
-    color: #6E6E6E;
     font-size: 16px;
+    color:white;
     font-style: normal;
     font-weight: normal;
 }
 
 .uk-input:-ms-input-placeholder {
-    color: #6E6E6E;
     font-size: 16px;
+    color:white;
     font-style: normal;
     font-weight: normal;
 }
 
 .uk-input::-ms-input-placeholder {
-    color: #6E6E6E;
     font-size: 16px;
+    color:white;
     font-style: normal;
     font-weight: normal;
 }
 
 .uk-input::placeholder {
-    color: #6E6E6E;
+    color:white;
     font-size: 16px;
     font-style: normal;
     font-weight: normal;
@@ -1068,28 +1066,7 @@ a:hover {
     background: #F2F2F2;
 }
 
-.uk-button {
-    font-family: 'Marcellus', serif;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-transition: all 0.25s linear;
-    -o-transition: all 0.25s linear;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    border-radius: 15px;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    text-transform: none;
-    transition: all 0.25s linear;
-    text-decoration: none;
-}
+
 
 .uk-button-secondary {
     background-color: #222;
@@ -1511,17 +1488,9 @@ a:hover {
     color: #F46119;
 }
 
-.logo-big img {
-    max-width: 65px;
-}
-
-.logo-big span {
-    font-family: 'Marcellus', serif;
-    font-size: 82px;
-    color: #fff;
-    position: relative;
-    top: 38px;
-    left: 12px;
+.logo-big{
+    width: 450px;
+    height: auto;
 }
 
 .page-header__logo {
@@ -1647,6 +1616,14 @@ a:hover {
     justify-content: center;
     width: 32px;
     height: 32px;
+}
+
+.modal-window{
+    /* background-image: linear-gradient(to top, #e40835, #D3029B ); */
+    color:black;
+    border: 0px;
+    position: absolute;
+    top: 50%;
 }
 
 .uk-modal-dialog {
@@ -1889,8 +1866,7 @@ a:hover {
     width: 100%;
     min-height: 100vh;
     padding: 120px 160px;
-    padding: 11.1vh 8.33vw;
-    background-image: url(../img/bg-first-screen.jpg);
+    background-image: url(../img/bitcoin-background.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1918,22 +1894,12 @@ a:hover {
     margin-left: auto;
     padding: 60px 45px;
     border-radius: 25px;
-    background: #FFFFFF;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
     box-shadow: 0px 30px 70px rgba(0, 0, 0, 0.03);
 }
 
-.form-login__social {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-}
+
 
 .form-login__box {
     color: #6C6C6C;
@@ -1941,25 +1907,130 @@ a:hover {
     font-style: normal;
     font-weight: normal;
     line-height: 1.31;
+    
 }
 
 .form-login__box .uk-heading-line {
     margin-bottom: 35px;
-    color: #6C6C6C;
+    color: white;
     font-size: 21px;
     font-style: normal;
     font-weight: normal;
     line-height: 1.31;
     font-family: 'Marcellus', serif;
+    
 }
 
-.form-login__box a:not(.uk-button) {
-    color: #F46119;
+.uk-button {
+    font-family: 'Marcellus', serif;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 15px;
     font-size: 16px;
     font-style: normal;
-    font-weight: normal;
-    line-height: 1.31;
+    font-weight: 400;
+    text-transform: none;
+    transition: all 0.25s linear;
+    text-decoration: none;
+    color: white;
+    background-color: #e40835;
+    background-image: linear-gradient(to bottom left, #e40835, #D3029B)
 }
+
+
+.uk-button:hover{
+    opacity: 0.8;
+    transform: scale(1.01);]
+}
+
+.uk-button-disabled{
+    font-family: 'Marcellus', serif;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: none;
+    transition: all 0.25s linear;
+    text-decoration: none;
+    background-color: #e40835;
+    opacity: 50%;
+    color: white;
+}
+
+.uk-button-disabled:hover{
+    cursor: not-allowed;
+
+}
+.alert-sucess{
+    position: absolute;
+    z-index: 10;
+    top:10%;
+    padding: 20px;
+    margin:0px;
+    background-color:white;
+    border-radius: 50px;
+    transform: translate(-50%, -50%); /* relative to element's height & width */
+    left: 50%; /* relative to nearest positioned ancestor or body element */
+    align-items: center; /* center flex items vertically, in this case */
+}
+
+.alert-erro {
+    position: absolute;
+    top:10%;
+    z-index: 10;
+    padding: 20px;
+    margin:0px;
+    background-image: linear-gradient(to bottom, #e40835, #D3029B);
+    color: white;
+    border-radius: 50px;
+    transform: translate(-50%, -50%); /* relative to element's height & width */
+    left: 50%; /* relative to nearest positioned ancestor or body element */
+    align-items: center; /* center flex items vertically, in this case */
+    color: white;
+}
+  
+.closebtn {
+    color: black;
+    margin-left: 15px;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size:2em;
+    z-index: 10;
+  }
+.hidden{
+    transition: all 1s;
+    display: none;
+}
+  .closebtn:hover{
+      color: lightgrey;
+      transition: all 0.5s;
+  }
 
 .form-login__box .uk-button {
     height: 60px;
@@ -3327,7 +3398,6 @@ a:hover {
     height: 24px;
     border: none;
     outline: none;
-    color: #646464;
     font-size: 24px;
     cursor: pointer;
     transition: all 0.25s linear;
@@ -3366,7 +3436,6 @@ a:hover {
     width: 100%;
     border: none;
     background: none;
-    color: #6E6E6E;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -3374,7 +3443,6 @@ a:hover {
 }
 
 .chat-messages-form .chat-messages-form-controls input::-webkit-input-placeholder {
-    color: #6E6E6E;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -3382,7 +3450,6 @@ a:hover {
 }
 
 .chat-messages-form .chat-messages-form-controls input::-moz-placeholder {
-    color: #6E6E6E;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -3390,7 +3457,6 @@ a:hover {
 }
 
 .chat-messages-form .chat-messages-form-controls input:-ms-input-placeholder {
-    color: #6E6E6E;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -3398,7 +3464,6 @@ a:hover {
 }
 
 .chat-messages-form .chat-messages-form-controls input::-ms-input-placeholder {
-    color: #6E6E6E;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -3406,7 +3471,6 @@ a:hover {
 }
 
 .chat-messages-form .chat-messages-form-controls input::placeholder {
-    color: #6E6E6E;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
@@ -3444,7 +3508,6 @@ a:hover {
     height: 24px;
     border: none;
     outline: none;
-    color: #646464;
     font-size: 24px;
     cursor: pointer;
     transition: all 0.25s linear;
@@ -4262,10 +4325,7 @@ body.dark-theme .form-login hr {
     border-top: 1px solid #1A2634;
 }
 
-body.dark-theme .form-login .uk-input {
-    border: 1px solid #1A2634;
-    background: #1A2634;
-}
+
 
 body.dark-theme .page-wrapper {
     background: #040615;
@@ -4771,6 +4831,8 @@ body.dark-theme #modal-help ul li {
         font-size: calc(12px + 3.4 * ((100vw - 320px) / 1920));
     }
 }
+
+
 
 @media only screen and (max-width: 639px) {
 
