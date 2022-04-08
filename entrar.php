@@ -9,7 +9,6 @@ $select = $DB->query("SELECT * FROM usuario WHERE email = '$email' AND senha = '
 $result = $select->fetch(PDO::FETCH_ASSOC);
 $rowCount = $select->rowCount();
 if ($rowCount > 0) {
-
     if ($result['status'] == 0) {
         $_SESSION["idUser"] = $result["id"];
 
