@@ -40,7 +40,7 @@
                                     ganhe</span><span class="count">15</span></a>
                         </li>
 
-                        <li><a href="09_games-store.html"><i class="ico_store"></i><span>Loja</span></a></li>
+                        <li class="<?= $pagina == 'loja' ? 'uk-active' : '' ?>"><a href="loja.php"><i class="ico_store"></i><span>Loja</span></a></li>
                         <li><a href="11_market.html"><i class="ico_market"></i><span>Meus estudos</span></a></li>
                         <li><a href="12_streams.html"><i class="ico_streams"></i><span>Lives</span></a></li>
 

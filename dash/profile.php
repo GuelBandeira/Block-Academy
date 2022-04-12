@@ -2,115 +2,126 @@
 include '../conn.php';
 $pagina = 'profile';
 $titulo =  'Perfil';
+$idUser = $_SESSION["idUser"];
+
+$infos =  CRUD::SELECT('', 'tabela_infos', 'id_usu=:qualUser', array('qualUser' => $idUser), 'order by id desc');
+foreach ($infos as $key => $value) {
+    $cpf = $value['cpf'];
+    $cep = $value['cep'];
+    $bairro = $value['bairro'];
+    $estado = $value['estado'];
+    $endereco = $value['endereco'];
+    $numero = $value['numero'];
+    $cidade = $value['cidade'];
+}
 ?>
+
+<!-- $cpf != '' ? $cpf : '' -->
+
 <? include '_head.php' ?>
 <? include '_nav.php' ?>
+
 <main class="page-main">
+    <? @$pegar = $_GET['resposta'];
+    if ($pegar == 'inserido') {
+        echo '<div class="alert-sucess2 m-0" id="botaoClose">';
+        echo '<span class="closebtn" onclick="fechar()">&times;</span>';
+        echo '<strong>Informações inseridas </strong> com sucesso.';
+        echo '</div>';
+    };
+    if ($pegar == 'cpfinvalido') {
+        echo '<div class="alert-erro m-0" id="botaoClose">';
+        echo '<span class="closebtn" onclick="fechar()">&times;</span>';
+        echo 'O CPF informado está <strong>inválido!</strong>';
+        echo '</div>';
+    }
+    if ($pegar == 'atualizado') {
+        echo '<div class="alert-sucess2 m-0" id="botaoClose">';
+        echo '<span class="closebtn" onclick="fechar()">&times;</span>';
+        echo 'Suas informações foram <strong>atualizadas!</strong>';
+        echo '</div>';
+    }
+    ?>
     <div class="uk-grid" data-uk-grid>
+
         <div class="uk-width-2-3@l">
             <div class="widjet --profile">
                 <div class="widjet__head">
                     <h3 class="uk-text-lead">Profile</h3>
                 </div>
+
                 <div class="widjet__body">
+
                     <div class="user-info">
                         <!-- <img src="<?= SITE_URL ?>assets/img/profile.png" alt="profile"> -->
                         <div class="user-info__avatar" style="color:white;"><?= Funcoes::iniciais(($_SESSION["nome"])) ?></div>
                         <div class="user-info__box">
                             <div class="uk-margin">
+
                                 <div class="user-info__title"><?= $_SESSION["nome"] ?></div>
                                 <div style="font-weight:100;"><?= $_SESSION['email'] ?></div>
                             </div>
                         </div>
                     </div>
-                    <div id="edit">⠀</div>
-                    <div id="confirmacao">⠀</div>
-                    <div><a class="uk-button uk-button-danger" onclick="editar()" href="#!"><svg xmlns="http://www.w3.org/2000/svg" fill="white" width="12" height="12" viewBox="0 0 24 24">
+                    <div><a class="uk-button uk-button-danger" onclick="editar()" href="#!"><svg xmlns="http://www.w3.org/2000/svg" fill="whi   " width="12" height="12" viewBox="0 0 24 24">
                                 <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
                             </svg><span class="uk-margin-small-left" id="editar">Adicionar Informações</span></a></div>
                 </div>
             </div>
-            <div class=" widjet --bio hidden" id="hide">
+
+            <div class=" widjet --bio " id="hide">
                 <div class="widjet__head">
                     <h3 class="uk-text-lead">Informações</h3>
                 </div>
+
                 <div class="widjet__body">
-                    <form method="POST">
+                    <form method="POST" action="inserirInfo.php">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="cpf">CPF</label>
-                                    <input data-mask="000.000.000-00" name="cpf" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu CPF">
+                                    <input data-mask="000.000.000-00" value="<?= @$cpf ?>" name="cpf" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu CPF">
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Estado">Estado</label>
-                                    <select name="estado" class="uk-input" style="background-color: #363636; color:white" name="estado">
-                                        <option value="AC">Acre</option>
-                                        <option value="AL">Alagoas</option>
-                                        <option value="AP">Amapá</option>
-                                        <option value="AM">Amazonas</option>
-                                        <option value="BA">Bahia</option>
-                                        <option value="CE">Ceará</option>
-                                        <option value="DF">Distrito Federal</option>
-                                        <option value="ES">Espírito Santo</option>
-                                        <option value="GO">Goiás</option>
-                                        <option value="MA">Maranhão</option>
-                                        <option value="MT">Mato Grosso</option>
-                                        <option value="MS">Mato Grosso do Sul</option>
-                                        <option value="MG">Minas Gerais</option>
-                                        <option value="PA">Pará</option>
-                                        <option value="PB">Paraíba</option>
-                                        <option value="PR">Paraná</option>
-                                        <option value="PE">Pernambuco</option>
-                                        <option value="PI">Piauí</option>
-                                        <option value="RJ">Rio de Janeiro</option>
-                                        <option value="RN">Rio Grande do Norte</option>
-                                        <option value="RS">Rio Grande do Sul</option>
-                                        <option value="RO">Rondônia</option>
-                                        <option value="RR">Roraima</option>
-                                        <option value="SC">Santa Catarina</option>
-                                        <option value="SP">São Paulo</option>
-                                        <option value="SE">Sergipe</option>
-                                        <option value="TO">Tocantins</option>
-                                        <option value="EX">Estrangeiro</option>
-                                    </select>
+                                    <input name="estado" value="<?= @$estado ?>" class="uk-input" style="background-color: #363636; color:white;" placeholder="Digite seu Estado">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Cidade">Cidade</label>
-                                    <input name="cidade" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite sua Cidade">
+                                    <input name="cidade" value="<?= @$cidade ?>" class="uk-input" style="background-color: #363636; color:white;" placeholder="Digite sua Cidade">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="endereco">Endereço</label>
-                                    <input name="endereco" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Endereço">
+                                    <input name="endereco" value="<?= @$endereco ?>" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Endereço">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="cep">CEP</label>
-                                    <input data-mask="00000-000" name="cep" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Endereço">
+                                    <input data-mask="00000-000" value="<?= @$cep ?>" name="cep" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Endereço">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="bairro">Bairro</label>
-                                    <input name="bairro" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Bairro">
+                                    <input name="bairro" value="<?= @$bairro ?>" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Bairro">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="numero">Número</label>
-                                    <input name="numero" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Numero">
+                                    <input name="numero" value="<?= @$numero ?>" class="uk-input" style="background-color: #363636; color:white" placeholder="Digite seu Numero">
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button class="uk-button uk-button-danger mt-3" name="enviar" style="float: right; background-image:linear-gradient(to bottom, #e40835, #D3029B)" align="right"><svg xmlns="http://www.w3.org/2000/svg" fill="white" style="margin-right: 5px;" width="16" height="12" viewBox="0 0 24 24">
+                            <div class="col-md-12">
+                                <button type="submit" class="uk-button uk-button-danger mt-3" name="enviar" style="float: right; background-image:linear-gradient(to bottom, #e40835, #D3029B)" align="right"><svg xmlns="http://www.w3.org/2000/svg" fill="white" style="margin-right: 5px;" width="16" height="12" viewBox="0 0 24 24">
                                         <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
                                     </svg>Confirmar</button>
                             </div>
@@ -119,17 +130,6 @@ $titulo =  'Perfil';
                 </div>
             </div>
 
-            <? if (isset($_POST['enviar'])) {
-                $cpf = $_POST['cpf'];
-                $endereco = $_POST['endereco'];
-                $cidade = $_POST['cidade'];
-                $bairro = $_POST['bairro'];
-                $estado = $_POST['estado'];
-                $cep = $_POST['cep'];
-                $numero = $_POST['numero'];
-                $parametros = array('cpf' => $cpf, 'endereco' => $endereco, 'cidade' => $cidade, 'bairro' => $bairro, 'estado' => $estado, 'cep' => $cep, 'numero' => $numero);
-                CRUD::INSERT('tabela_infos', $parametros);
-            } ?>
 
             <div class="widjet --activity">
                 <div class="widjet__head">
@@ -176,7 +176,6 @@ $titulo =  'Perfil';
         <div class="uk-width-1-3@l">
             <div class="widjet --upload">
                 <?
-                $idUser = $_SESSION["idUser"];
                 $select = $DB->query("SELECT id_usu FROM tabela_infos WHERE id_usu='$idUser'");
                 $result = $select->fetch(PDO::FETCH_ASSOC);
                 $rowCount = $select->rowCount();
@@ -194,10 +193,10 @@ $titulo =  'Perfil';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+                } else {
+                    $condicao = true;
                 }
                 ?>
-
-
             </div>
             <div class="widjet --badges">
                 <div class="widjet__head">
@@ -284,14 +283,25 @@ $titulo =  'Perfil';
 
 <script src="<?= SITE_URL ?>assets/js/libs.js"></script>
 <script src="<?= SITE_URL ?>assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" integrity="sha512-hAJgR+pK6+s492clbGlnrRnt2J1CJK6kZ82FZy08tm6XG2Xl/ex9oVZLE6Krz+W+Iv4Gsr8U2mGMdh0ckRH61Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    function submit() {
+        $("input").each(function() {
+            var input = $(this); // This is the jquery object of the input, do what you will
+        });
+    }
+
+    var par = $('#hide');
+    $(par).hide();
+
     function editar() {
-        $('#hide').removeClass('hidden');
-        $('#hide').css({
-            -webkit - animation,
-            "expand 5s";
-        })
+        $('#hide').slideToggle();
+    }
+
+    function fechar() {
+        $("#botaoClose").fadeOut(1100);
     }
 </script>
 </body>
